@@ -1,0 +1,39 @@
+TestNet used - CryptoKylin TestNet
+TestNet endpoint - https://api-kylin.eosasia.one
+chain ID - 5fff1dae8dc8e2fc4d5b23b2c7665c97f9e9d8edf2b6485a86ba311c25639191
+
+Account Name - user3account
+string - {
+    "msg": "succeeded",
+    "keys": {
+        "active_key": {
+            "public": "EOS5tnbueqkQYYgisoackPCAT3tWst5DMVbLZqtNf9R7JfDbd5p3a",
+            "private": "5KXjokua65nwPAPqEga93w7SGZsbdX75JziUcpuQMhGhWy4t8GH"
+        },
+        "owner_key": {
+            "public": "EOS5bXM6njLnj26aYxaLHcCNTZxPwn8oxLx6jARqVqL58x7QeFtHo",
+            "private": "5KFLfDRoDrnQ3E3Cy7rovk9wt54CL5Mpbu2WRGzwVyyq6tnagEe"
+        }
+    },
+    "account": "user3account"
+}
+
+
+Account Name - user2account
+string - {
+    "msg": "succeeded",
+    "keys": {
+        "active_key": {
+            "public": "EOS5qX4a7HFgqxWBNEgMyZgt5a9A4M5xcj4x3GpnCRFvShMspApzz",
+            "private": "5KKuYt4FfejEn7r71aiQD32SnevyAPf3GTsUStHpVcV9qGDGWmJ"
+        },
+        "owner_key": {
+            "public": "EOS6kGht1uy7Gq3yU2ECWHCkH9acAeTr4H1JeUxxKyL3vkS5SC1sm",
+            "private": "5Ka5ZBQrF7StBYj4JWTGCrqf1GqdVNBTcKWmrB8QKXxzH5vTNQD"
+        }
+    },
+    "account": "user2account"
+}
+
+keosd Wallet name - cardwal
+private-key - PW5KHadpByJLG9RNPEv9E1vTDCbKYkqiJe9zHgEPztyAeLYRKqgcG

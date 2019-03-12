@@ -1,0 +1,175 @@
+{
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Tue Mar 12 17:39:55 2019",
+    "version": "eosio::abi/1.1",
+    "structs": [
+        {
+            "name": "createuser",
+            "base": "",
+            "fields": [
+                {
+                    "name": "username",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "freezeuser",
+            "base": "",
+            "fields": [
+                {
+                    "name": "username",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "pack_user_logs",
+            "base": "",
+            "fields": [
+                {
+                    "name": "packs_available",
+                    "type": "uint8"
+                },
+                {
+                    "name": "packs_opened",
+                    "type": "uint8"
+                }
+            ]
+        },
+        {
+            "name": "packs",
+            "base": "",
+            "fields": [
+                {
+                    "name": "pack_name",
+                    "type": "name"
+                },
+                {
+                    "name": "status",
+                    "type": "int8"
+                },
+                {
+                    "name": "owner",
+                    "type": "name"
+                },
+                {
+                    "name": "populated_cards",
+                    "type": "bytes"
+                },
+                {
+                    "name": "collection_name",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "packs_collections",
+            "base": "",
+            "fields": [
+                {
+                    "name": "pack_collection_name",
+                    "type": "name"
+                },
+                {
+                    "name": "count",
+                    "type": "uint8"
+                },
+                {
+                    "name": "sold",
+                    "type": "uint8"
+                },
+                {
+                    "name": "available",
+                    "type": "uint8"
+                }
+            ]
+        },
+        {
+            "name": "unfreezeuser",
+            "base": "",
+            "fields": [
+                {
+                    "name": "username",
+                    "type": "name"
+                },
+                {
+                    "name": "owned_packs",
+                    "type": "uint8[]"
+                },
+                {
+                    "name": "owned_cards",
+                    "type": "uint8[]"
+                }
+            ]
+        },
+        {
+            "name": "users",
+            "base": "",
+            "fields": [
+                {
+                    "name": "username",
+                    "type": "name"
+                },
+                {
+                    "name": "owned_packs",
+                    "type": "uint8[]"
+                },
+                {
+                    "name": "owned_cards",
+                    "type": "uint8[]"
+                }
+            ]
+        }
+    ],
+    "types": [],
+    "actions": [
+        {
+            "name": "createuser",
+            "type": "createuser",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "freezeuser",
+            "type": "freezeuser",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "unfreezeuser",
+            "type": "unfreezeuser",
+            "ricardian_contract": ""
+        }
+    ],
+    "tables": [
+        {
+            "name": "collection",
+            "type": "packs_collections",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "logs",
+            "type": "pack_user_logs",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "packs",
+            "type": "packs",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "users",
+            "type": "users",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        }
+    ],
+    "ricardian_clauses": [],
+    "variants": [],
+    "abi_extensions": []
+}
