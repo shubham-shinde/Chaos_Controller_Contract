@@ -2,6 +2,7 @@
 #include<eosiolib/asset.hpp>
 // #include<eosiolib/db.h>
 #include<vector>
+//#include <debug.h>
 // #include<unordered_map>
 
 using namespace std;
@@ -25,46 +26,46 @@ class [[eosio::contract]] controller : public eosio::contract {
         
 
         enum pack_status: int8_t {
-            OPEN = 1,
-            CLOSED = 0
+            IN_MARKET = 0,
+            OPENED = 3,
+            CLOSED = 2
         };
 
-        struct [[eosio::table]] pack_user_logs {
-            // name user;
+        struct [[eosio::table]] logs {
             // name user;
             uint8_t packs_available;
             uint8_t packs_opened;
             auto primary_key() const { return packs_available; };
         };
 
-        struct [[eosio::table]] packs_collections
+        struct [[eosio::table]] collections
         {
-            name pack_collection_name;
+            name p_col_name;
             uint8_t count;
             uint8_t sold;
             uint8_t available;
-            auto primary_key() const { return pack_collection_name.value; };
+            auto primary_key() const { return p_col_name.value; };
         };
 
         struct [[eosio::table]] packs
         {
             name pack_name;
-            int8_t status=CLOSED;
+            int8_t status=IN_MARKET;
             name owner;
-            vector<int8_t> populated_cards;
+            vector<int64_t> populated_cards;
             name collection_name;
             auto primary_key() const { return pack_name.value; };
         };
 
-        typedef eosio::multi_index<name("collection"), packs_collections> packs_collections_table;
+        typedef eosio::multi_index<name("collections"), collections> packs_col_table;
         typedef eosio::multi_index<name("packs"), packs> packs_table;
         typedef eosio::multi_index<name("users"), users> user_table;
-        typedef eosio::multi_index<name("logs"), pack_user_logs> pack_user_logs_table;
+        typedef eosio::multi_index<name("logs"), logs> user_logs_table;
 
         user_table _users;
-        packs_collections_table _packs_collections;
+        packs_col_table _packs_col;
         packs_table _packs;
-        pack_user_logs_table _pack_user_logs;
+        user_logs_table _user_logs;
         
         // _pack_user_logs::iterator pack_user_logs_iterator;
 
@@ -90,11 +91,11 @@ class [[eosio::contract]] controller : public eosio::contract {
             : contract(receiver, code, ds)
             , _users(receiver, receiver.value)
             , _packs(receiver, receiver.value)
-            , _packs_collections(receiver, receiver.value)
-            , _pack_user_logs(receiver, receiver.value)
+            , _packs_col(receiver, receiver.value)
+            , _user_logs(receiver, receiver.value)
             {
                 //create a log in logs table
-                _pack_user_logs.emplace(_self, [&](auto& logs) {
+                _user_logs.emplace(_self, [&](auto& logs) {
                     // logs.user = _self;
                     logs.packs_available = 0;
                     logs.packs_opened = 0;
@@ -111,7 +112,13 @@ class [[eosio::contract]] controller : public eosio::contract {
         void unfreezeuser(name username, vector<uint8_t> owned_packs, vector<uint8_t> owned_cards);
         
         // [[eosio::action]]
-        // void create_pack(); //later
+        // void create_pack(string pack_name, ); //later
+
+        [[eosio::action]]
+        void createcol(name p_col_name);
+
+        [[eosio::action]]
+        void creatpack(name packname, name colname, vector<uint64_t> cards);
 
         // [[eosio::action]]
         // void remove_pack(); //later

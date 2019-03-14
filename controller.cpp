@@ -35,6 +35,37 @@ void controller::unfreezeuser(name username, vector<uint8_t> owned_packs, vector
     // return;
 }
 
+
+void controller::createcol(name p_col_name) {
+    // name col_name(p_col_name);
+    // print("hii");
+    _packs_col.emplace(_self, [&](auto& col) {
+        col.p_col_name = p_col_name;
+        col.count = 0;
+        col.sold = 0;
+        col.available = 0;
+    });
+
+}
+
+void controller::creatpack(name packname, name colname, vector<uint64_t> cards) {
+    //Authorize the owner;
+    
+    eosio_assert(cards.size() == 6, "size error");
+
+    if(_packs_col.find(colname.value) != _packs_col.end()) {
+        _packs.emplace(_self, [&](auto& pack) {
+            pack.pack_name = packname;
+            pack.collection_name = colname;
+            for(auto i : cards) {
+                pack.populated_cards.push_back(i);
+            }
+            // pack.populated_cards = cards;
+        });
+    }
+
+}
+
 // void cards::buy_packs(name pack_id, name owner, name buyer) {
 
 // }
@@ -53,4 +84,4 @@ void controller::unfreezeuser(name username, vector<uint8_t> owned_packs, vector
 //     });
 // }
 
-EOSIO_DISPATCH(controller, (createuser)(freezeuser)(unfreezeuser))
+EOSIO_DISPATCH(controller, (createuser)(freezeuser)(unfreezeuser)(createcol)(creatpack))

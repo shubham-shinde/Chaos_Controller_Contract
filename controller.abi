@@ -1,7 +1,39 @@
 {
-    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Tue Mar 12 17:39:55 2019",
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Thu Mar 14 17:17:20 2019",
     "version": "eosio::abi/1.1",
     "structs": [
+        {
+            "name": "collections",
+            "base": "",
+            "fields": [
+                {
+                    "name": "p_col_name",
+                    "type": "name"
+                },
+                {
+                    "name": "count",
+                    "type": "uint8"
+                },
+                {
+                    "name": "sold",
+                    "type": "uint8"
+                },
+                {
+                    "name": "available",
+                    "type": "uint8"
+                }
+            ]
+        },
+        {
+            "name": "createcol",
+            "base": "",
+            "fields": [
+                {
+                    "name": "p_col_name",
+                    "type": "name"
+                }
+            ]
+        },
         {
             "name": "createuser",
             "base": "",
@@ -9,6 +41,24 @@
                 {
                     "name": "username",
                     "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "creatpack",
+            "base": "",
+            "fields": [
+                {
+                    "name": "packname",
+                    "type": "name"
+                },
+                {
+                    "name": "colname",
+                    "type": "name"
+                },
+                {
+                    "name": "cards",
+                    "type": "uint64[]"
                 }
             ]
         },
@@ -23,7 +73,7 @@
             ]
         },
         {
-            "name": "pack_user_logs",
+            "name": "logs",
             "base": "",
             "fields": [
                 {
@@ -54,33 +104,11 @@
                 },
                 {
                     "name": "populated_cards",
-                    "type": "bytes"
+                    "type": "int64[]"
                 },
                 {
                     "name": "collection_name",
                     "type": "name"
-                }
-            ]
-        },
-        {
-            "name": "packs_collections",
-            "base": "",
-            "fields": [
-                {
-                    "name": "pack_collection_name",
-                    "type": "name"
-                },
-                {
-                    "name": "count",
-                    "type": "uint8"
-                },
-                {
-                    "name": "sold",
-                    "type": "uint8"
-                },
-                {
-                    "name": "available",
-                    "type": "uint8"
                 }
             ]
         },
@@ -124,8 +152,18 @@
     "types": [],
     "actions": [
         {
+            "name": "createcol",
+            "type": "createcol",
+            "ricardian_contract": ""
+        },
+        {
             "name": "createuser",
             "type": "createuser",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "creatpack",
+            "type": "creatpack",
             "ricardian_contract": ""
         },
         {
@@ -141,15 +179,15 @@
     ],
     "tables": [
         {
-            "name": "collection",
-            "type": "packs_collections",
+            "name": "collections",
+            "type": "collections",
             "index_type": "i64",
             "key_names": [],
             "key_types": []
         },
         {
             "name": "logs",
-            "type": "pack_user_logs",
+            "type": "logs",
             "index_type": "i64",
             "key_names": [],
             "key_types": []
